@@ -1,0 +1,48 @@
+{
+  "name": "DUSAR - Pakistani Card Game",
+  "short_name": "DUSAR",
+  "description": "A fun and engaging digital version of the classic Pakistani card game DUSAR. Play against AI or with friends!",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#1a1a2e",
+  "theme_color": "#FF6B6B",
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%23FF6B6B' width='540' height='720'/><text x='270' y='350' font-size='80' fill='white' text-anchor='middle' font-weight='bold'>DUSAR</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23FF6B6B' width='192' height='192' rx='44'/><text x='96' y='130' font-size='100' fill='white' text-anchor='middle' font-weight='bold'>♠</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%23FF6B6B' width='512' height='512' rx='110'/><text x='256' y='360' font-size='280' fill='white' text-anchor='middle' font-weight='bold'>♠</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23FF6B6B' width='192' height='192' rx='44'/><text x='96' y='130' font-size='100' fill='white' text-anchor='middle' font-weight='bold'>♠</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["games"],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><defs><linearGradient id='g1' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23667eea;stop-opacity:1' /><stop offset='100%' style='stop-color:%23764ba2;stop-opacity:1' /></linearGradient></defs><rect fill='url(%23g1)' width='540' height='720'/><text x='270' y='320' font-size='72' fill='white' text-anchor='middle' font-weight='bold'>DUSAR</text><text x='270' y='400' font-size='24' fill='white' text-anchor='middle'>Pakistani Card Game</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ]
+}
