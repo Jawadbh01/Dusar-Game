@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#FF6B6B">
+    <meta name="description" content="DUSAR - Pakistani card game. Play with friends or AI bots.">
+    <title>DUSAR - Card Game</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23FF6B6B' width='192' height='192'/><text x='96' y='120' font-size='100' fill='white' text-anchor='middle' font-weight='bold'>♠</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main Game Container -->
+    <div id="gameApp" class="app-container">
+        
+        <!-- Screen 1: Home Screen -->
+        <div id="homeScreen" class="screen active">
+            <div class="home-content">
+                <div class="logo-section">
+                    <h1 class="game-title">DUSAR</h1>
+                    <p class="game-subtitle">Pakistani Card Game</p>
+                    <div class="card-symbols">♠ ♥ ♦ ♣</div>
+                </div>
+                
+                <div class="mode-buttons">
+                    <button class="btn btn-primary" id="playAiBtnHome">Play vs AI</button>
+                    <button class="btn btn-secondary" id="playLocalBtnHome">Play with Friends</button>
+                    <button class="btn btn-tertiary" id="rulesBtnHome">How to Play</button>
+                </div>
+                
+                <div class="footer-note">A game of bidding, trumps & strategy</div>
+            </div>
+        </div>
+
+        <!-- Screen 2: Rules Screen -->
+        <div id="rulesScreen" class="screen">
+            <div class="rules-container">
+                <button class="btn-back" id="backFromRules">← Back</button>
+                <h2>How to Play DUSAR</h2>
+                
+                <div class="rules-content">
+                    <div class="rule-section">
+                        <h3>🎮 Game Setup</h3>
+                        <p>• 4 players in 2 teams (diagonal partners)</p>
+                        <p>• 13 cards dealt to each player</p>
+                        <p>• One player calls Trump (Rang/Color)</p>
+                    </div>
+                    
+                    <div class="rule-section">
+                        <h3>💰 Bidding Phase</h3>
+                        <p>• Bid how many tricks you'll win (9-13)</p>
+                        <p>• Or bid "52 Salam" (all tricks)</p>
+                        <p>• Highest bidder calls trump suit</p>
+                    </div>
+                    
+                    <div class="rule-section">
+                        <h3>🎴 Card Strength</h3>
+                        <p>• Ace is highest, 2 is lowest</p>
+                        <p>• Trump suit beats all other cards</p>
+                        <p>• 2♠ of Trump = Super card (beats Ace)</p>
+                    </div>
+                    
+                    <div class="rule-section">
+                        <h3>🏆 Scoring</h3>
+                        <p>• If bid 9 & get 9 = You score 9 pts</p>
+                        <p>• If opponent gets more = They score 18 pts</p>
+                        <p>• First to 100+ points wins</p>
+                    </div>
+                    
+                    <div class="rule-section">
+                        <h3>📋 Trick Rules</h3>
+                        <p>• Must follow suit if you have it</p>
+                        <p>• Highest card of suit led wins</p>
+                        <p>• Trump card beats all other suits</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 3: Player Setup Screen -->
+        <div id="setupScreen" class="screen">
+            <div class="setup-container">
+                <button class="btn-back" id="backFromSetup">← Back</button>
+                <h2>Player Setup</h2>
+                
+                <div id="playerSetupForm" class="setup-form">
+                    <!-- Will be populated by JS -->
+                </div>
+                
+                <button class="btn btn-primary" id="startGameBtn" disabled>Start Game</button>
+            </div>
+        </div>
+
+        <!-- Screen 4: Game Screen -->
+        <div id="gameScreen" class="screen">
+            <div class="game-header">
+                <div class="score-display">
+                    <div class="team-score">
+                        <span class="team-label">Team 1</span>
+                        <span class="team-points" id="team1Score">0</span>
+                    </div>
+                    <div class="divider">vs</div>
+                    <div class="team-score">
+                        <span class="team-label">Team 2</span>
+                        <span class="team-points" id="team2Score">0</span>
+                    </div>
+                </div>
+                <button class="btn-icon" id="menuBtn" title="Menu">⚙️</button>
+            </div>
+
+            <div class="game-board">
+                <!-- Opponents Cards Area -->
+                <div class="players-area">
+                    <div class="player-position player-top">
+                        <div class="player-name" id="player2Name">Opponent</div>
+                        <div class="player-cards cards-top" id="player2Cards"></div>
+                    </div>
+                    
+                    <div class="players-sides">
+                        <div class="player-position player-left">
+                            <div class="player-name" id="player3Name">Partner</div>
+                            <div class="player-cards cards-left" id="player3Cards"></div>
+                        </div>
+
+                        <!-- Center Play Area -->
+                        <div class="play-zone">
+                            <div class="trump-display">
+                                <div class="trump-label">Trump</div>
+                                <div class="trump-card" id="trumpDisplay">?</div>
+                            </div>
+                            <div class="table-area" id="playArea"></div>
+                            <div class="bid-display" id="bidDisplay"></div>
+                        </div>
+
+                        <div class="player-position player-right">
+                            <div class="player-name" id="player1Name">Opponent</div>
+                            <div class="player-cards cards-right" id="player1Cards"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Player's Hand (Bottom) -->
+                <div class="player-hand">
+                    <div class="player-name" id="player0Name">You</div>
+                    <div class="cards-container" id="playerHand"></div>
+                </div>
+            </div>
+
+            <!-- Game States Overlay -->
+            <div class="overlay" id="gameOverlay">
+                
+                <!-- Bidding Phase -->
+                <div class="modal" id="biddingModal">
+                    <h3>Your Bid</h3>
+                    <p class="bid-info">How many tricks will you win?</p>
+                    <div class="bid-buttons">
+                        <button class="bid-btn" data-bid="9">9</button>
+                        <button class="bid-btn" data-bid="10">10</button>
+                        <button class="bid-btn" data-bid="11">11</button>
+                        <button class="bid-btn" data-bid="12">12</button>
+                        <button class="bid-btn" data-bid="13">13</button>
+                        <button class="bid-btn salam" data-bid="52">52 Salam</button>
+                    </div>
+                    <button class="btn btn-secondary" id="passBtn">Pass</button>
+                </div>
+
+                <!-- Trump Selection -->
+                <div class="modal" id="trumpModal">
+                    <h3>Choose Trump Suit</h3>
+                    <p class="trump-info">Select the suit that will be strongest</p>
+                    <div class="trump-buttons">
+                        <button class="trump-btn suit-spade" data-suit="♠">Spades ♠</button>
+                        <button class="trump-btn suit-heart" data-suit="♥">Hearts ♥</button>
+                        <button class="trump-btn suit-diamond" data-suit="♦">Diamonds ♦</button>
+                        <button class="trump-btn suit-club" data-suit="♣">Clubs ♣</button>
+                    </div>
+                </div>
+
+                <!-- Reveal Trump Option -->
+                <div class="modal" id="revealTrumpModal">
+                    <h3>Reveal Trump?</h3>
+                    <p class="trump-info">You don't have the suit. Reveal trump now?</p>
+                    <div class="modal-buttons">
+                        <button class="btn btn-primary" id="revealBtn">Reveal Trump</button>
+                        <button class="btn btn-secondary" id="skipRevealBtn">Skip This Round</button>
+                    </div>
+                </div>
+
+                <!-- Hand Over -->
+                <div class="modal" id="handOverModal">
+                    <h3 id="handOverTitle">Hand Over</h3>
+                    <div class="hand-over-stats" id="handOverStats"></div>
+                    <button class="btn btn-primary" id="nextHandBtn">Next Hand</button>
+                </div>
+
+                <!-- Game Over -->
+                <div class="modal" id="gameOverModal">
+                    <h3>Game Over!</h3>
+                    <div class="final-scores" id="finalScores"></div>
+                    <button class="btn btn-primary" id="playAgainBtn">Play Again</button>
+                    <button class="btn btn-secondary" id="homeBtn">Home</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Popup -->
+    <div class="menu-popup" id="menuPopup">
+        <div class="menu-content">
+            <h3>Menu</h3>
+            <button class="menu-item" id="quitGameBtn">Quit Game</button>
+            <button class="menu-item" id="rulesBtn">Rules</button>
+            <button class="menu-item" id="settingsBtn">Settings</button>
+            <button class="menu-item close-menu" id="closeMenuBtn">Close</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
